@@ -1,0 +1,25 @@
+{
+  "name": "App-Analogiae",
+  "version": "1.0.0",
+  "description": "Research application for concept coherence analysis",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmeurehg/App-Analogiae.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmeurehg/App-Analogiae/issues"
+  },
+  "homepage": "https://github.com/cmeurehg/App-Analogiae#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.14"
+  }
+}
