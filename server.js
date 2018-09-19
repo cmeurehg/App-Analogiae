@@ -11,13 +11,14 @@ app.use(bodyParser.json());
 
 //For serving static assets in Heroku
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("public"));
+    app.use(express.static("front"));
 }
 
-//Using the API and View routes
+//Using the API and View(front/public...) routes
 app.use(routes);
 
 //Setting up the connection to MongoDB
+mongoose.set('useCreateIndex', true);
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/categories");
 
 //Starting the API server
