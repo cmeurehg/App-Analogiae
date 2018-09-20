@@ -14,6 +14,7 @@
 <body>
     <h2>Concept Categories</h2>
         <br><br>
+    <button id="test"> Test</button>
 
     <h3>Enter a Concept Family o Category</h3>
 
@@ -25,7 +26,7 @@
         <br><br>
     <h3>Enter a Concept Use</h3>
 
-    <form action="/submit" method="post">
+    <form action="/api/create" method="POST">
         <input type="text" name="instance"placeholder="instance">
         <input type="text" name="author" placeholder="author">
         <input type="text" name="code"placeholder="code">
@@ -59,8 +60,16 @@
         
         <h3>Generate Graph</h3>
         <input type="submit" name="Generate Network">
-
-
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('#test').on('click', function(){
+                    $.get('/api/findAll', function(data){
+                        console.log(data);
+                    })
+                });
+            });
+        </script>
 </body>
 
 </html>
