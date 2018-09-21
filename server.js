@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const htmlRoutes = require('./routes/html/index.js');
-const apiRoutes = require('./routes/api/instance.js');
+const apiRoutes = require('./routes/api/index.js');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -16,8 +16,8 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //Using the API and View(front/public...) routes
-app.use('/', htmlRoutes);
-app.use('/api', apiRoutes);
+app.use("/", htmlRoutes);
+app.use("/api", apiRoutes);
 
 //Setting up the connection to MongoDB
 mongoose.set('useCreateIndex', true);

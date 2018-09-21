@@ -4,30 +4,28 @@ const db = require("../models");
 
 module.exports = {
 
- 
 
     findAll: function(req, res) {
-        console.log("-------------- Reached findAll Instances ------------------");
-        db.Instance
+        console.log("-------------- Reached findAll Categories ------------------");
+        db.Category
             .find(req.query)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-
-    
+   
 
     findById: function(req, res) {
-        console.log("-------------- Reached findById Instance -----------------");
-        db.Instance
+        console.log("-------------- Reached findById Category -----------------");
+        db.Category
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
-   
+    
     create: function(req, res) {
-        console.log("-------------- Reached create Instance -------------------");
-        db.Instance
+        console.log("-------------- Reached create Category -------------------");
+        db.Category
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -35,18 +33,17 @@ module.exports = {
 
     
     update: function(req, res) {
-        console.log("-------------- Reached update Instance -------------------");
-        db.Instance
+        console.log("-------------- Reached update Category-------------------");
+        db.Category
             .findOneAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
-    
 
     remove: function(req, res) {
-        console.log("-------------- Reached remove Instance-------------------");
-        db.Instance
+        console.log("-------------- Reached remove Category-------------------");
+        db.Category
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
