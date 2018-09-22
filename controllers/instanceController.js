@@ -16,12 +16,15 @@ module.exports = {
 
     
 
-    findById: function(req, res) {
+    findRelations: function(req, res) {
         console.log("-------------- Reached findById Instance -----------------");
-        db.Instance
-            .findById(req.params.id)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        // let relation = 
+        // db.Instance
+        //     .find({
+        //         affinity: 
+        //     }),
+        //     .then(dbModel => res.json(dbModel))
+        //     .catch(err => res.status(422).json(err));
     },
 
    

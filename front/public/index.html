@@ -15,8 +15,8 @@
     <h2>Concept Categories</h2>
         <br><br>
     
-        <button id="findAllCat">FindAllCat</button>
-        <button id="findAll">FindAll</button>
+        <button id="findAllCat">Find Categories</button>
+        <button id="findAll">Find Instances</button>
 
     <h3>Enter a Concept Family o Category</h3>
 
@@ -30,15 +30,29 @@
     
     <h3>Enter a Concept Use</h3>
 
-    <form action="/api/instance/create" method="POST">
+    <!-- <form action="/api/instance/create" method="POST">
         <input type="text" name="instance"placeholder="instance">
         <input type="text" name="author" placeholder="author">
         <input type="text" name="code"placeholder="code">
         <input type="text" name="affinities" placeholder="affinities">
         <input type="text" name="function"placeholder="function">
-        <input type="text" name="language-game" placeholder="language game">
+        <input type="text" name="languageGame" placeholder="language game">
         <input type="submit">
-    </form>
+    </form> -->
+
+    <div>
+        <form class="formSubmission">
+            <input type="text" name="instance"placeholder="instance">
+            <input type="text" name="author" placeholder="author">
+            <input type="text" name="code"placeholder="code">
+            <input type="text" name="affinities" placeholder="affinities">
+            <input type="text" name="function"placeholder="function">
+            <input type="text" name="languageGame" placeholder="language game">
+            <!-- <input type="submit"> -->
+        </form>
+        <button id='formSubmit'> Submitttt </button>
+    </div>
+
         
         <br><br>
    
@@ -83,6 +97,34 @@
                     })
                 });
             });
+
+            $(document).ready(function(){
+                $('#formSubmit').on('click', function(e){
+                    e.preventDefault()
+                    var form = Array.from(document.querySelectorAll('.formSubmission input'))
+                    var affinities = form[3].value
+                    var affinityValues = affinities.split(',')
+
+                    var affinityMongoObject = {
+                        instance: form[0].value,
+                        author: form[1].value,
+                        code: form[2].value,
+                        affinities: affinityValues,
+                        function: form[4].value,
+                        languageGame: form[5].value
+                    }
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/api/instance/create',
+                        data: affinityMongoObject
+                    }).done(function(msg){
+                        alert("Data has been sent: " + msg)
+                    })
+
+
+                })
+            })
 
             
         </script>
