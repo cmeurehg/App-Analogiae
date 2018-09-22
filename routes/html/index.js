@@ -7,7 +7,7 @@ const router = require("express").Router();
 
 
 
-router.get( '/', function(req, res) {
+router.get( "/", function(req, res) {
     res.sendFile(path.join( __dirname, "../../front/public/index.html"));
 });
 

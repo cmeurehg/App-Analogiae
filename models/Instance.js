@@ -6,7 +6,7 @@ const InstanceSchema = new Schema({
     instance: String,
     author: String,
     code: String,
-    affinity: String,
+    affinities: Array,
     function: String,
     languageGame: String
 });
