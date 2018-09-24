@@ -13,12 +13,13 @@
 
 <body>
     <h2>Concept Categories</h2>
-        <br><br>
+    
     
         <button id="findAllCat">Find Categories</button>
-        <button id="findAll">Find Instances</button>
+    
+        <br><br>
 
-    <h3>Enter a Concept Family o Category</h3>
+    <h4>Enter a Concept Family or Category</h4>
 
     <form action="/api/category/createCat" method="POST">
       <input type="text" name="Category"placeholder="Category">
@@ -26,9 +27,14 @@
       <input type="submit">
     </form>
         
-        <br><br>
+        <br><br><br>
+
+        <h2>Concept Uses or Instances</h2>
+
+    <button id="findAll">Find Instances</button>
+    <br><br>
     
-    <h3>Enter a Concept Use</h3>
+    <h4>Enter a Concept Use or Instance</h4>
 
     <!-- <form action="/api/instance/create" method="POST">
         <input type="text" name="instance"placeholder="instance">
@@ -50,34 +56,39 @@
             <input type="text" name="languageGame" placeholder="language game">
             <!-- <input type="submit"> -->
         </form>
-        <button id='formSubmit'> Submitttt </button>
+        <button id='formSubmit'> Submit </button>
+       
+        
+
     </div>
 
         
         <br><br>
    
-    <a href="/categories">Categories</a><br><br>
-    <a href="/instances">Instances</a><br><br>
+    
 
-    <h3>Search a Concept Family or Category</h3>
+    <!-- <h3>Search a Concept Family or Category</h3>
 
     <form action="/submit" method="get">
       <input type="text" name="Category"placeholder="Category">
       <input type="submit">
-    </form>
+    </form> -->
         <br>
 
-        <h3>Search concept uses by affinity</h3>
+        <!-- <h3>Search concept uses by affinity</h3>
 
         <form action="/submit" method="get">
           <input type="text" name="enter-instance"placeholder="Enter Instance">
           <input type="text" name="affinity"placeholder="affinity">
           <input type="submit">
         </form>
-        <br><br>
+        <br><br> -->
         
-        <h3>Generate Graph</h3>
-        <input type="submit" name="Generate Network">
+        <h3>Generate Network Graph</h3>
+        <!-- <input type="submit" name="Generate Network"> -->
+        <button id="generateGraph">Generate</button>
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         
         <script>
@@ -86,6 +97,7 @@
                 $("#findAll").on("click", function(){
                     $.get("/api/instance/findAll", function(data){
                         console.log(data);
+
                     })
                 });
             });
@@ -114,17 +126,29 @@
                         languageGame: form[5].value
                     }
 
+                    // if(){
+
+                    // }else{
+
+                    // }
                     $.ajax({
                         method: 'POST',
                         url: '/api/instance/create',
                         data: affinityMongoObject
                     }).done(function(msg){
-                        alert("Data has been sent: " + msg)
+                        alert("The new concept use or instance is now in the database");
                     })
+                });
+            });
 
+            $(document).ready(function(){
+                $("#generateGraph").on("click", function(){
+                    $.get("/api/instance/findAll", function(data){
+                        console.log(data);
 
-                })
-            })
+                    })
+                });
+            });
 
             
         </script>
