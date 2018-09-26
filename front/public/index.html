@@ -36,11 +36,23 @@
 
     <h4>Enter a Concept Family or Category</h4>
 
-    <form action="/api/category/createCat" method="POST">
+    <!-- <form action="/api/category/createCat" method="POST">
       <input type="text" name="Category"placeholder="Category">
-      <input type="text" name="title" placeholder="title">
+      
       <input type="submit">
-    </form>
+    </form> -->
+
+    <div>
+            <form id="submissionCat">
+                <input type="text" name="category"placeholder="category">
+                
+            </form>
+            <button id="formSubmitCat"> Submit </button>
+           
+            
+    
+    </div>
+
         
         <br><br><br>
 
@@ -136,6 +148,26 @@
             });
 
             $(document).ready(function(){
+                $('#formSubmitCat').on('click', function(e){
+                    e.preventDefault()
+                    
+                    var conceptFamily = Array.from(document.querySelectorAll("#submissionCat input"));
+
+                // Posting the category or concept family to the database
+                    $.ajax({
+                        method: 'POST',
+                        url: '/api/category/createCat',
+                        data: conceptFamily
+                        
+                    }).done(function(msg){
+                        alert("The new concept family or category is now in the database");
+                    })
+                });
+            });
+
+            // Obtaining data from browser for the instances
+
+            $(document).ready(function(){
                 $('#formSubmit').on('click', function(e){
                     e.preventDefault()
                     var form = Array.from(document.querySelectorAll('.formSubmission input'))
@@ -156,6 +188,8 @@
                     // }else{
 
                     // }
+
+                    //Posting instance and affinities object to the database
                     $.ajax({
                         method: 'POST',
                         url: '/api/instance/create',
@@ -165,6 +199,10 @@
                     })
                 });
             });
+
+
+
+
 
             $(document).ready(function(){
                 $("#generateGraph").on("click", function(){
