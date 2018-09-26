@@ -9,12 +9,16 @@ const CategorySchema = new Schema({
         type: String,
         unique: true
     },
+
+    category: String,
+
     conceptUses: [
         {
             type: Schema.Types.ObjectId,
             ref: "Instance"
         }
     ]
+
 });
 
 const Category = mongoose.model("Category", CategorySchema);
