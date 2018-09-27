@@ -208,6 +208,10 @@
                     $.get("/api/instance/findAll", function(data){
                         console.log(data);
 
+                                                    
+                                                    
+                                                    // D3
+    
     // This script below forms the D3 Network Graph nodes using the values from the findAll Instances array of objects    
                             
                             var width = 400, height = 300
@@ -217,8 +221,32 @@
                             
                             for (let j = 0; j < data.length; j++) {
                                 nodes.push({name: data[j].code});
-                                //links.push({});
+                                                             
+                                for (let k = 0; k < data.length; k++) {
+                                    if (data[j] != data[k] && data[j].affinities.length == data[k].affinities.length) {
+                                        let sourceNode = data[j];
+                                        let targetNode = data[k];
+                                        
+                                        links.push({source: sourceNode, target: targetNode});
+                                        
+                                   
+                                }
                             }
+                        }
+
+                                // for (let k = 0; k < data.length; k++) {
+                                //     if (data[j].affinities.length === data[k].affinities.length) {
+                                //         links.push({source: data[j].code, target: data[k].code, weight: data[k].affinities.length});
+                                //     }
+                                // }
+
+                            //     switch (node[i]) {
+
+                            //         case ():
+
+                            //             break;
+                            //     }
+
                             
                             // var nodes = [
                             // {name: data[0].code},
