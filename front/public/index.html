@@ -118,7 +118,7 @@
         
         <div id="content">
                   
-                <svg width="400" height="300">
+                <svg width="1200" height="800">
                         <g class="links"></g>
                         <g class="nodes"></g>
                 </svg>
@@ -208,17 +208,42 @@
                     $.get("/api/instance/findAll", function(data){
                         console.log(data);
 
+                                                    
+                                                    
+                                                    // D3
+    
     // This script below forms the D3 Network Graph nodes using the values from the findAll Instances array of objects    
                             
-                            var width = 400, height = 300
+                            const width = 1200, height = 800;
 
                             let nodes = [];
                             let links = [];
                             
                             for (let j = 0; j < data.length; j++) {
                                 nodes.push({name: data[j].code});
-                                //links.push({});
+                                const sourceNode = data[j];          
+                                for (let k = 0; k < data.length; k++) {
+                                    if (sourceNode != data[k]){// && sourceNode.affinities.length == data[k].affinities.length) {
+                                        links.push({source: j, target: k});
+                                        
+                                   
+                                }
                             }
+                        }
+
+                                // for (let k = 0; k < data.length; k++) {
+                                //     if (data[j].affinities.length === data[k].affinities.length) {
+                                //         links.push({source: data[j].code, target: data[k].code, weight: data[k].affinities.length});
+                                //     }
+                                // }
+
+                            //     switch (node[i]) {
+
+                            //         case ():
+
+                            //             break;
+                            //     }
+
                             
                             // var nodes = [
                             // {name: data[0].code},
@@ -243,7 +268,7 @@
                             // ]
 
                             var simulation = d3.forceSimulation(nodes)
-                            .force('charge', d3.forceManyBody().strength(-100))
+                            .force('charge', d3.forceManyBody().strength(-4000))
                             .force('center', d3.forceCenter(width / 2, height / 2))
                             .force('link', d3.forceLink().links(links))
                             .on('tick', ticked);
