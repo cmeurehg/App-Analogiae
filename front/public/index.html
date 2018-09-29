@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.0.0/journal/bootstrap.min.css" />
+  <title>Test App-Analogiae Page</title>
+</head>
+
+<style>
+        circle {
+          fill: cadetblue;
+        }
+        line {
+          stroke: #ccc;
+        }
+        text {
+          text-anchor: middle;
+          font-family: "Helvetica Neue", Helvetica, sans-serif;
+          fill: #666;
+          font-size: 16px;
+        }
+        </style>
+
+<body>
+    <h2>Concept Categories</h2>
+    
+    
+        <button id="findAllCat">Find Categories</button>
+    
+        <br><br>
+
+    <h4>Enter a Concept Family or Category</h4>
+
+    <!-- <form action="/api/category/createCat" method="POST">
+      <input type="text" name="Category"placeholder="Category">
+      
+      <input type="submit">
+    </form> -->
+
+    <div>
+            <form id="submissionCat">
+                <input type="text" name="category"placeholder="category">
+                
+            </form>
+            <button id="formSubmitCat"> Submit </button>
+           
+            
+    
+    </div>
+
+        
+        <br><br><br>
+
+        <h2>Concept Uses or Instances</h2>
+
+    <button id="findAll">Find Instances</button>
+    <br><br>
+    
+    <h4>Enter a Concept Use or Instance</h4>
+
+    <!-- <form action="/api/instance/create" method="POST">
+        <input type="text" name="instance"placeholder="instance">
+        <input type="text" name="author" placeholder="author">
+        <input type="text" name="code"placeholder="code">
+        <input type="text" name="affinities" placeholder="affinities">
+        <input type="text" name="function"placeholder="function">
+        <input type="text" name="languageGame" placeholder="language game">
+        <input type="submit">
+    </form> -->
+
+    <div>
+        <form class="formSubmission">
+            <input type="text" name="instance"placeholder="instance">
+            <input type="text" name="author" placeholder="author">
+            <input type="text" name="code"placeholder="code">
+            <input type="text" name="affinities" placeholder="affinities">
+            <input type="text" name="function"placeholder="function">
+            <input type="text" name="languageGame" placeholder="language game">
+            <!-- <input type="submit"> -->
+        </form>
+        <button id='formSubmit'> Submit </button>
+       
+        
+
+    </div>
+
+        
+        <br><br>
+   
+    
+
+    <!-- <h3>Search a Concept Family or Category</h3>
+
+    <form action="/submit" method="get">
+      <input type="text" name="Category"placeholder="Category">
+      <input type="submit">
+    </form> -->
+        <br>
+
+        <!-- <h3>Search concept uses by affinity</h3>
+
+        <form action="/submit" method="get">
+          <input type="text" name="enter-instance"placeholder="Enter Instance">
+          <input type="text" name="affinity"placeholder="affinity">
+          <input type="submit">
+        </form>
+        <br><br> -->
+        
+        <h3>Generate Network Graph</h3>
+        <!-- <input type="submit" name="Generate Network"> -->
+        <button id="generateGraph">Generate</button>
+
+        
+        <div id="content">
+                  
+                <svg width="1200" height="800">
+                        <g class="links"></g>
+                        <g class="nodes"></g>
+                </svg>
+        </div>
+
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
+
+        
+        <script>
+            
+            $(document).ready(function(){
+                $("#findAll").on("click", function(){
+                    $.get("/api/instance/findAll", function(data){
+                        console.log(data);
+
+                    })
+                });
+            });
+
+            $(document).ready(function(){
+                $("#findAllCat").on("click", function(){
+                    $.get("/api/category/findAllCat", function(data){
+                        console.log(data);
+                    })
+                });
+            });
+
+            $(document).ready(function(){
+                $('#formSubmitCat').on('click', function(e){
+                    e.preventDefault()
+                    
+                    var conceptFamily = Array.from(document.querySelectorAll("#submissionCat input"));
+
+    // Posting the category or concept family to the database
+
+                    $.ajax({
+                        method: 'POST',
+                        url: '/api/category/createCat',
+                        data: conceptFamily
+                        
+                    }).done(function(msg){
+                        alert("The new concept family or category is now in the database");
+                    })
+                });
+            });
+
+    // Obtaining data from browser for the instances
+
+            $(document).ready(function(){
+                $('#formSubmit').on('click', function(e){
+                    e.preventDefault()
+                    var form = Array.from(document.querySelectorAll('.formSubmission input'))
+                    var affinities = form[3].value
+                    var affinityValues = affinities.split(',')
+
+                    var affinityMongoObject = {
+                        instance: form[0].value,
+                        author: form[1].value,
+                        code: form[2].value,
+                        affinities: affinityValues,
+                        function: form[4].value,
+                        languageGame: form[5].value
+                    }
+
+                    // if(){
+
+                    // }else{
+
+                    // }
+
+    //Posting instance and affinities object to the database
+                    $.ajax({
+                        method: 'POST',
+                        url: '/api/instance/create',
+                        data: affinityMongoObject
+                    }).done(function(msg){
+                        alert("The new concept use or instance is now in the database");
+                    })
+                });
+            });
+
+            $(document).ready(function(){
+                $("#generateGraph").on("click", function(){
+                    $.get("/api/instance/findAll", function(data){
+                        console.log(data);
+
+                                                    
+                                                    
+                                                    // D3
+    
+    // This script below forms the D3 Network Graph nodes using the values from the findAll Instances array of objects    
+                            
+                            const width = 1200, height = 800;
+
+                            let nodes = [];
+                            let links = [];
+                            
+                            for (let j = 0; j < data.length; j++) {
+                                nodes.push({name: data[j].code});
+                                const sourceNode = data[j];          
+                                for (let k = 0; k < data.length; k++) {
+                                    if (sourceNode != data[k]){// && sourceNode.affinities.length == data[k].affinities.length) {
+                                        links.push({source: j, target: k});
+                                        
+                                   
+                                }
+                            }
+                        }
+
+                                // for (let k = 0; k < data.length; k++) {
+                                //     if (data[j].affinities.length === data[k].affinities.length) {
+                                //         links.push({source: data[j].code, target: data[k].code, weight: data[k].affinities.length});
+                                //     }
+                                // }
+
+                            //     switch (node[i]) {
+
+                            //         case ():
+
+                            //             break;
+                            //     }
+
+                            
+                            // var nodes = [
+                            // {name: data[0].code},
+                            // {name: "b"},
+                            // {name: "c"},
+                            // {name: "d"},
+                            // {name: "e"},
+                            // {name: "f"},
+                            // {name: "g"},
+                            // {name: "h"}
+                            // ]
+
+                            // let links = [
+                            // {source: 0, target: 1},
+                            // {source: 0, target: 2},
+                            // {source: 0, target: 3},
+                            // {source: 1, target: 6},
+                            // {source: 3, target: 4},
+                            // {source: 3, target: 7},
+                            // {source: 4, target: 5},
+                            // {source: 4, target: 7}
+                            // ]
+
+                            var simulation = d3.forceSimulation(nodes)
+                            .force('charge', d3.forceManyBody().strength(-4000))
+                            .force('center', d3.forceCenter(width / 2, height / 2))
+                            .force('link', d3.forceLink().links(links))
+                            .on('tick', ticked);
+
+                            function updateLinks() {
+                            var u = d3.select('.links')
+                            .selectAll('line')
+                            .data(links)
+
+                            u.enter()
+                            .append('line')
+                            .merge(u)
+                            .attr('x1', function(d) {
+                                return d.source.x
+                            })
+                            .attr('y1', function(d) {
+                                return d.source.y
+                            })
+                            .attr('x2', function(d) {
+                                return d.target.x
+                            })
+                            .attr('y2', function(d) {
+                                return d.target.y
+                            })
+
+                            u.exit().remove()
+                            }
+
+                            function updateNodes() {
+                            u = d3.select('.nodes')
+                            .selectAll('text')
+                            .data(nodes)
+
+                            u.enter()
+                            .append('text')
+                            .text(function(d) {
+                                return d.name
+                            })
+                            .merge(u)
+                            .attr('x', function(d) {
+                                return d.x
+                            })
+                            .attr('y', function(d) {
+                                return d.y
+                            })
+                            .attr('dy', function(d) {
+                                return 5
+                            })
+
+                            u.exit().remove()
+                            }
+
+                            function ticked() {
+                            updateLinks()
+                            updateNodes()
+                            }
+
+
+
+                    })
+                });
+            });
+
+        
+
+</script>
+
+
+
+
+</body>
+
+</html>
