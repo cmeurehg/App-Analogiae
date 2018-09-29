@@ -6,8 +6,7 @@ const CategorySchema = new Schema({
 
 
     conceptFamily: {
-        type: String,
-        unique: true
+        type: String
     },
 
     category: String,
