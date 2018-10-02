@@ -10,18 +10,32 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
+
+
+
 //For serving static assets in Heroku
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("front"));
+
+app.use(express.static("front"));
+
+const databaseUri = "mongodb://localhost/categories";
+
+if (process.env.MONGODB_URI) {
+    mongoose.connect(process.env.MONGODB_URI);
+} else {
+    mongoose.connect(databaseUri);
 }
+
+mongoose.set('useCreateIndex', true);
+//mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/categories");
+const db = mongoose.connection;
+db.on("error", function (err) {
+    console.log ("Mongoose error: ", err);
+});
+
 
 //Using the API and View(front/public...) routes
 app.use("/", htmlRoutes);
 app.use("/api", apiRoutes);
-
-//Setting up the connection to MongoDB
-mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/categories");
 
 //Starting the API server
 app.listen(PORT, function() {
