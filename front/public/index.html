@@ -43,7 +43,7 @@
     </form> -->
 
     <div>
-            <form id="submissionCat">
+            <form class="submissionCat">
                 <input type="text" name="category"placeholder="category">
                 
             </form>
@@ -83,7 +83,7 @@
             <input type="text" name="languageGame" placeholder="language game">
             <!-- <input type="submit"> -->
         </form>
-        <button id='formSubmit'> Submit </button>
+        <button id="formSubmit"> Submit </button>
        
         
 
@@ -150,10 +150,12 @@
             });
 
             $(document).ready(function(){
-                $('#formSubmitCat').on('click', function(e){
+                $("#formSubmitCat").on("click", function(e){
                     e.preventDefault()
                     
-                    var conceptFamily = Array.from(document.querySelectorAll("#submissionCat input"));
+                    var conceptFamily = Array.from(document.querySelectorAll(".submissionCat input"));
+
+                   
 
     // Posting the category or concept family to the database
 
@@ -164,18 +166,22 @@
                         
                     }).done(function(msg){
                         alert("The new concept family or category is now in the database");
+                       
                     })
+                    $(".submissionCat").trigger("reset");
                 });
+               
+
             });
 
     // Obtaining data from browser for the instances
 
             $(document).ready(function(){
-                $('#formSubmit').on('click', function(e){
+                $("#formSubmit").on("click", function(e){
                     e.preventDefault()
-                    var form = Array.from(document.querySelectorAll('.formSubmission input'))
+                    var form = Array.from(document.querySelectorAll(".formSubmission input"));
                     var affinities = form[3].value
-                    var affinityValues = affinities.split(',')
+                    var affinityValues = affinities.split(",");
 
                     var affinityMongoObject = {
                         instance: form[0].value,
@@ -184,7 +190,9 @@
                         affinities: affinityValues,
                         function: form[4].value,
                         languageGame: form[5].value
-                    }
+                    };
+
+                    $(".formSubmission").trigger("reset");
 
                     // if(){
 
