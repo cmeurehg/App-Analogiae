@@ -32,6 +32,16 @@
     </style>
 
     <body>
+
+            <div class="jumbotron">
+                    <h1>App Analogy</h1> 
+                    <p>Concept Coherence Analysis Tool for Interdisciplinary Research</p> 
+            </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
         
             <h2>Concept Categories</h2>
         
@@ -69,9 +79,13 @@
                 
                 <button id="formSubmit"> Submit </button>
         </div>
+</div>
+        </div>
 
-        
-                <br><br>
+    </div>
+    
+    <div class="col-md-8">
+    
    
             <h3>Generate Network Graph</h3>
         
@@ -87,12 +101,13 @@
         
         <div id="content">
                   
-                <svg id="svg" width="1200" height="800">
+                <svg id="svg" width="800" height="450">
                         <g class="links"></g>
                         <g class="nodes"></g>
                 </svg>
         </div>
-
+    </div>
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
@@ -197,7 +212,7 @@
                 //         console.log(data);
                 
                             
-                            const width = 1200, height = 800;
+                            const width = 800, height = 450;
 
                             let nodes = [];
                             let links = [];
