@@ -26,10 +26,11 @@ if (process.env.MONGODB_URI) {
 }
 
 mongoose.set('useCreateIndex', true);
+
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/categories");
 const db = mongoose.connection;
 db.on('error', function (err) {
-    console.log ('Mongoose error: ', err);
+    console.log('Mongoose error: ', err);
 });
 
 
