@@ -23,13 +23,13 @@ if (process.env.MONGODB_URI) {
     mongoose.connect(process.env.MONGODB_URI);
 } else {
     mongoose.connect(databaseUri);
-};
+}
 
 mongoose.set('useCreateIndex', true);
 //mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/categories");
 const db = mongoose.connection;
-db.on("error", function (err) {
-    console.log ("Mongoose error: ", err);
+db.on('error', function (err) {
+    console.log ('Mongoose error: ', err);
 });
 
 
@@ -39,5 +39,5 @@ app.use("/api", apiRoutes);
 
 //Starting the API server
 app.listen(PORT, function() {
-    console.log(`Success! API Server listening on PORT ${PORT}!`);
+    //console.log(`Success! API Server listening on PORT ${PORT}!`);
 });

@@ -183,19 +183,6 @@
                     $.get("/api/instance/findAll", function(data){
                         console.log(data);
 
-                
-                // $("#2affinities").on("click", function(){
-                //     $.get("/api/instance/findAll", function(data){
-                //         console.log(data);
-
-                // $("#3affinities").on("click", function(){
-                //     $.get("/api/instance/findAll", function(data){
-                //         console.log(data);
-
-                // $("#4affinities").on("click", function(){
-                //     $.get("/api/instance/findAll", function(data){
-                //         console.log(data);
-                
                             
                             const width = 1200, height = 800;
 
@@ -308,6 +295,7 @@
                             let u = d3.select('.links')
                             .selectAll('line')
                             .data(links)
+                            .style(color)
                             
                             
 
