@@ -12,7 +12,20 @@
     </head>
 
     <style>
-            
+
+            h1, h2, h3, h4, p {
+
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color:grey;
+                font-weight:lighter;
+            }
+
+            .jumbotron {
+
+                background-color: #14005f;
+            }
+
+                       
             nodes {
                 fill: blue;
             }
@@ -43,29 +56,31 @@
         <div class="card">
             <div class="card-body">
         
-            <h2>Concept Categories</h2>
+            <h4>Concepts & Categories</h2>
         
             <button id="findAllCat">Find Categories</button>
         
             <br><br>
 
-            <h4>Enter a Concept Family or Category</h4>
+            <h4>Enter a concept family or category</h4>
         
         <div>
                 <form class="submissionCat">
                     <input type="text" name="category"placeholder="category">
                 </form>
+                <br>
                 
                 <button id="formSubmitCat"> Submit </button>
         </div>
+            <br>
                
-            <h2>Concept Uses or Instances</h2>
+            <h4>Instances</h2>
 
                 <button id="findAll">Find Instances</button>
                 
                 <br><br>
     
-            <h4>Enter a Concept Use or Instance</h4>
+            <h4>Enter a concept use or instance</h4>
 
         <div>
                 <form class="formSubmission">
@@ -76,6 +91,7 @@
                     <input type="text" name="function"placeholder="function">
                     <input type="text" name="languageGame" placeholder="language game">
                 </form>
+                <br>
                 
                 <button id="formSubmit"> Submit </button>
         </div>
@@ -87,7 +103,7 @@
     <div class="col-md-8">
     
    
-            <h3>Generate Network Graph</h3>
+            <h4>Concept (Category) Network</h3>
         
         
                 <button id="generateGraph">Generate</button>
@@ -96,7 +112,7 @@
                 <button id="1affinity">1 affinity</button>
                 <button id="2affinities">2 affinities</button>
                 <button id="3affinities">3 affinities</button>
-                <button id="4affinities">4 affinities</button>
+                <button id="function">function</button>
 
         
         <div id="content">
@@ -376,7 +392,7 @@
                             };
 
                             d3.select("#svg").transition()
-                            .style("background-color", "red");
+                            .style("background-color", "lightgrey");
 
                     });
                 
