@@ -12,7 +12,20 @@
     </head>
 
     <style>
-            
+
+            h1, h2, h3, h4, p {
+
+                font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                color:grey;
+                font-weight:lighter;
+            }
+
+            .jumbotron {
+
+                background-color: #14005f;
+            }
+
+                       
             nodes {
                 fill: blue;
             }
@@ -34,34 +47,47 @@
     <body>
 
             <div class="jumbotron">
+<<<<<<< HEAD
                     <h1>Bootstrap Tutorial</h1> 
                     <p>Bootstrap is the most popular HTML, CSS, and JS framework for developing
                     responsive, mobile-first projects on the web.</p> 
             </div>
+=======
+                    <h1>App Analogy</h1> 
+                    <p>Concept Coherence Analysis Tool for Interdisciplinary Research</p> 
+            </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+>>>>>>> bf4c42ff1def9d59a97c90ecc4a02f6fb5f4e013
         
-            <h2>Concept Categories</h2>
+            <h4>Concepts & Categories</h2>
         
             <button id="findAllCat">Find Categories</button>
         
             <br><br>
 
-            <h4>Enter a Concept Family or Category</h4>
+            <h4>Enter a concept family or category</h4>
         
         <div>
                 <form class="submissionCat">
                     <input type="text" name="category"placeholder="category">
                 </form>
+                <br>
                 
                 <button id="formSubmitCat"> Submit </button>
         </div>
+            <br>
                
-            <h2>Concept Uses or Instances</h2>
+            <h4>Instances</h2>
 
                 <button id="findAll">Find Instances</button>
                 
                 <br><br>
     
-            <h4>Enter a Concept Use or Instance</h4>
+            <h4>Enter a concept use or instance</h4>
 
         <div>
                 <form class="formSubmission">
@@ -72,14 +98,19 @@
                     <input type="text" name="function"placeholder="function">
                     <input type="text" name="languageGame" placeholder="language game">
                 </form>
+                <br>
                 
                 <button id="formSubmit"> Submit </button>
         </div>
+</div>
+        </div>
 
-        
-                <br><br>
+    </div>
+    
+    <div class="col-md-8">
+    
    
-            <h3>Generate Network Graph</h3>
+            <h4>Concept (Category) Network</h3>
         
         
                 <button id="generateGraph">Generate</button>
@@ -88,17 +119,18 @@
                 <button id="1affinity">1 affinity</button>
                 <button id="2affinities">2 affinities</button>
                 <button id="3affinities">3 affinities</button>
-                <button id="4affinities">4 affinities</button>
+                <button id="function">function</button>
 
         
         <div id="content">
                   
-                <svg id="svg" width="1200" height="800">
+                <svg id="svg" width="800" height="450">
                         <g class="links"></g>
                         <g class="nodes"></g>
                 </svg>
         </div>
-
+    </div>
+</div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
@@ -190,7 +222,7 @@
                         console.log(data);
 
                             
-                            const width = 1200, height = 800;
+                            const width = 800, height = 450;
 
                             let nodes = [];
                             let links = [];
@@ -355,7 +387,7 @@
                             };
 
                             d3.select("#svg").transition()
-                            .style("background-color", "red");
+                            .style("background-color", "lightgrey");
 
                     });
                 
