@@ -10,9 +10,6 @@ const PORT = process.env.PORT || 3001;
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json());
 
-
-
-
 //For serving static assets in Heroku
 
 app.use(express.static("front"));
