@@ -1,4 +1,8 @@
 # App-Analogy
+<<<<<<< HEAD
+
+This application was designed to assist in interdesciplinary academic research.  It's purpose is to identify the strength of the affinity between specific functions given to a concept, that is, how similar is the way that the concept instances are being used.
+=======
 Concept Structure or Concept Coherence Analysis
 
 App-Analogy is available online at:
@@ -34,6 +38,7 @@ https://app-analogiae.herokuapp.com
 
 
 
+>>>>>>> bf4c42ff1def9d59a97c90ecc4a02f6fb5f4e013
 
 
 
